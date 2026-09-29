@@ -95,11 +95,7 @@ export default function KpiOverview({
       </div>
 
       {/* KPI Cards Grid */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-        gap: '1rem'
-      }}>
+      <div className="kpi-cards-grid">
         {/* KPI 1: Research Portfolio */}
         <div 
           className="card" 

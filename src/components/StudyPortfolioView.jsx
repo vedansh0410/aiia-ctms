@@ -90,11 +90,7 @@ export default function StudyPortfolioView({ studies, onSelectStudy, onOpenRepor
       </div>
 
       {/* Studies Grid */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(500px, 1fr))',
-        gap: '1.25rem'
-      }}>
+      <div className="study-cards-grid">
         {filteredStudies.map((study) => {
           const accrualPct = Math.round((study.currentEnrolled / study.targetEnrollment) * 100);
           const hasSae = study.saeCount > 0;
@@ -219,10 +215,7 @@ export default function StudyPortfolioView({ studies, onSelectStudy, onOpenRepor
                 </div>
 
                 {/* Compliance & Regulatory Alerts */}
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(2, 1fr)',
-                  gap: '0.5rem',
+                <div className="study-compliance-grid" style={{
                   fontSize: '0.72rem',
                   padding: '0.65rem 0',
                   borderTop: '1px solid var(--border-subtle)',
@@ -300,19 +293,19 @@ export default function StudyPortfolioView({ studies, onSelectStudy, onOpenRepor
           padding: '1.5rem',
           zIndex: 1000
         }}>
-          <div className="card animate-fade-in" style={{
+          <div className="card animate-fade-in modal-dialog" style={{
             maxWidth: '850px',
             width: '100%',
             maxHeight: '90vh',
             overflowY: 'auto',
-            padding: '2rem',
+            padding: '1.75rem',
             background: 'var(--bg-secondary)',
             border: '1px solid var(--border-highlight)'
           }}>
             {/* Modal Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem', flexWrap: 'wrap' }}>
                   <span className="clinical-code">{selectedStudyModal.protocolNumber}</span>
                   <span className="badge badge-teal">{selectedStudyModal.ctriId}</span>
                   <span className="badge badge-gold">{selectedStudyModal.phase}</span>
@@ -332,7 +325,7 @@ export default function StudyPortfolioView({ studies, onSelectStudy, onOpenRepor
             </div>
 
             {/* Dossier Content Tabs / Sections */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
+            <div className="grid-col-2" style={{ marginBottom: '1.5rem' }}>
               <div className="card" style={{ padding: '1rem', background: 'var(--bg-card)' }}>
                 <h4 style={{ fontSize: '0.85rem', marginBottom: '0.5rem', color: 'var(--teal-300)' }}>
                   Clinical Protocol Specifications
@@ -364,7 +357,8 @@ export default function StudyPortfolioView({ studies, onSelectStudy, onOpenRepor
               <h4 style={{ fontSize: '0.85rem', marginBottom: '0.75rem', color: 'var(--text-primary)' }}>
                 Multi-Centre Site Accrual & Investigator Directory
               </h4>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.78rem' }}>
+              <div className="table-responsive">
+                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.78rem' }}>
                 <thead>
                   <tr style={{ borderBottom: '1px solid var(--border-medium)', textAlign: 'left', color: 'var(--text-secondary)' }}>
                     <th style={{ padding: '0.5rem' }}>Site Name</th>
@@ -390,9 +384,10 @@ export default function StudyPortfolioView({ studies, onSelectStudy, onOpenRepor
                   ))}
                 </tbody>
               </table>
+              </div>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', flexWrap: 'wrap' }}>
               <button 
                 onClick={() => setSelectedStudyModal(null)}
                 className="btn btn-secondary"

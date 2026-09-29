@@ -168,7 +168,7 @@ export default function StandardsAndInteroperabilityView() {
     <div>
       {/* Standards Navigation */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.75rem' }}>
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
           {[
             { id: 'sdtm', label: 'CDISC SDTM Tabulation', icon: Database },
             { id: 'define', label: 'Define-XML 2.0 Metadata', icon: FileCode },
@@ -189,7 +189,7 @@ export default function StandardsAndInteroperabilityView() {
           })}
         </div>
 
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
           <button 
             id="btn-export-sdtm-json"
             onClick={handleExportJson}
@@ -225,7 +225,7 @@ export default function StandardsAndInteroperabilityView() {
             </div>
 
             {/* Domain Selector */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Domain:</span>
               {['DM', 'AE', 'VS', 'CM'].map(d => (
                 <button
@@ -242,7 +242,7 @@ export default function StandardsAndInteroperabilityView() {
                 id="btn-export-domain-csv"
                 onClick={handleExportCsv}
                 className="btn btn-secondary"
-                style={{ fontSize: '0.75rem', padding: '0.25rem 0.6rem', marginLeft: '0.5rem' }}
+                style={{ fontSize: '0.75rem', padding: '0.25rem 0.6rem' }}
               >
                 <Download size={13} />
                 <span>Export {selectedDomain}.csv</span>
@@ -251,7 +251,7 @@ export default function StandardsAndInteroperabilityView() {
           </div>
 
           {/* Table display */}
-          <div style={{ overflowX: 'auto' }}>
+          <div className="table-responsive">
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>
               <thead>
                 <tr style={{ borderBottom: '1px solid var(--border-medium)', textAlign: 'left', color: 'var(--teal-400)' }}>

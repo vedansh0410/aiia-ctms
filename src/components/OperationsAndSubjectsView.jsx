@@ -33,7 +33,7 @@ export default function OperationsAndSubjectsView({ studies, onAddDeviation }) {
     <div>
       {/* Sub-tab Navigation */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.75rem' }}>
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
           {[
             { id: 'funnel', label: 'Accrual Funnel & SoA Matrix', icon: Users },
             { id: 'deviations', label: 'Protocol Deviations Log', icon: AlertTriangle },
@@ -55,7 +55,7 @@ export default function OperationsAndSubjectsView({ studies, onAddDeviation }) {
         </div>
 
         {/* Study Selector Dropdown */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
           <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Select Protocol:</span>
           <select
             value={selectedStudyId}
@@ -67,7 +67,8 @@ export default function OperationsAndSubjectsView({ studies, onAddDeviation }) {
               background: 'var(--bg-input)',
               color: 'var(--text-primary)',
               fontSize: '0.78rem',
-              outline: 'none'
+              outline: 'none',
+              maxWidth: '100%'
             }}
           >
             {studies.map(s => (
@@ -90,7 +91,7 @@ export default function OperationsAndSubjectsView({ studies, onAddDeviation }) {
 
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 110px), 1fr))',
               gap: '0.75rem',
               textAlign: 'center'
             }}>
@@ -129,7 +130,7 @@ export default function OperationsAndSubjectsView({ studies, onAddDeviation }) {
               Tracks prospective clinical evaluations, Ayurvedic dosha assessments, laboratory safety tests, and eCRF lock status.
             </p>
 
-            <div style={{ overflowX: 'auto' }}>
+            <div className="table-responsive">
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.78rem' }}>
                 <thead>
                   <tr style={{ borderBottom: '1px solid var(--border-medium)', textAlign: 'left', color: 'var(--text-secondary)' }}>
@@ -240,43 +241,45 @@ export default function OperationsAndSubjectsView({ studies, onAddDeviation }) {
             Integrated with Ayushman Bharat Digital Mission (ABDM) ABHA token and Prakriti Pariksha categorization.
           </p>
 
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.78rem' }}>
-            <thead>
-              <tr style={{ borderBottom: '1px solid var(--border-medium)', textAlign: 'left', color: 'var(--text-secondary)' }}>
-                <th style={{ padding: '0.6rem' }}>Subject ID</th>
-                <th style={{ padding: '0.6rem' }}>ABHA Token (ABDM)</th>
-                <th style={{ padding: '0.6rem' }}>Demographics</th>
-                <th style={{ padding: '0.6rem' }}>Dosha Prakriti</th>
-                <th style={{ padding: '0.6rem' }}>Allocated Arm</th>
-                <th style={{ padding: '0.6rem' }}>Visit Stage</th>
-                <th style={{ padding: '0.6rem' }}>eCRF Progress</th>
-              </tr>
-            </thead>
-            <tbody>
-              {syntheticSubjects.map((s, idx) => (
-                <tr key={idx} style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                  <td style={{ padding: '0.6rem' }}><span className="clinical-code">{s.id}</span></td>
-                  <td style={{ padding: '0.6rem', color: 'var(--info-blue)', fontFamily: 'var(--font-mono)' }}>{s.abhaId}</td>
-                  <td style={{ padding: '0.6rem' }}>{s.age}y / {s.gender}</td>
-                  <td style={{ padding: '0.6rem' }}>
-                    <span className="badge badge-gold" style={{ fontSize: '0.65rem' }}>
-                      {s.prakriti}
-                    </span>
-                  </td>
-                  <td style={{ padding: '0.6rem' }}>{s.arm}</td>
-                  <td style={{ padding: '0.6rem', color: 'var(--teal-300)' }}>{s.visitStatus}</td>
-                  <td style={{ padding: '0.6rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <div style={{ width: '60px', height: '6px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px' }}>
-                        <div style={{ width: `${s.eCrfProgress}%`, height: '100%', background: 'var(--teal-500)', borderRadius: '4px' }} />
-                      </div>
-                      <span>{s.eCrfProgress}%</span>
-                    </div>
-                  </td>
+          <div className="table-responsive">
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.78rem' }}>
+              <thead>
+                <tr style={{ borderBottom: '1px solid var(--border-medium)', textAlign: 'left', color: 'var(--text-secondary)' }}>
+                  <th style={{ padding: '0.6rem' }}>Subject ID</th>
+                  <th style={{ padding: '0.6rem' }}>ABHA Token (ABDM)</th>
+                  <th style={{ padding: '0.6rem' }}>Demographics</th>
+                  <th style={{ padding: '0.6rem' }}>Dosha Prakriti</th>
+                  <th style={{ padding: '0.6rem' }}>Allocated Arm</th>
+                  <th style={{ padding: '0.6rem' }}>Visit Stage</th>
+                  <th style={{ padding: '0.6rem' }}>eCRF Progress</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {syntheticSubjects.map((s, idx) => (
+                  <tr key={idx} style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                    <td style={{ padding: '0.6rem' }}><span className="clinical-code">{s.id}</span></td>
+                    <td style={{ padding: '0.6rem', color: 'var(--info-blue)', fontFamily: 'var(--font-mono)' }}>{s.abhaId}</td>
+                    <td style={{ padding: '0.6rem' }}>{s.age}y / {s.gender}</td>
+                    <td style={{ padding: '0.6rem' }}>
+                      <span className="badge badge-gold" style={{ fontSize: '0.65rem' }}>
+                        {s.prakriti}
+                      </span>
+                    </td>
+                    <td style={{ padding: '0.6rem' }}>{s.arm}</td>
+                    <td style={{ padding: '0.6rem', color: 'var(--teal-300)' }}>{s.visitStatus}</td>
+                    <td style={{ padding: '0.6rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                        <div style={{ width: '60px', height: '6px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px' }}>
+                          <div style={{ width: `${s.eCrfProgress}%`, height: '100%', background: 'var(--teal-500)', borderRadius: '4px' }} />
+                        </div>
+                        <span>{s.eCrfProgress}%</span>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>

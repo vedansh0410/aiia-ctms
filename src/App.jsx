@@ -198,15 +198,7 @@ export default function App() {
         />
 
         {/* Tab Navigation Pill Bar */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          borderBottom: '1px solid var(--border-medium)',
-          paddingBottom: '0.75rem',
-          marginBottom: '1.5rem',
-          overflowX: 'auto'
-        }}>
+        <div className="tab-pill-bar">
           {[
             { id: 'portfolio', label: 'Research Portfolio & Lifecycle', icon: FolderGit2, badge: `${studies.length}` },
             { id: 'safety', label: 'NPvCC Pharmacovigilance & Safety', icon: ShieldAlert, badge: activeSaeCount > 0 ? 'Urgent Clock' : 'Normal', badgeAlert: activeSaeCount > 0 },

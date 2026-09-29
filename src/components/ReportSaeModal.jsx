@@ -91,12 +91,12 @@ export default function ReportSaeModal({
       padding: '1.5rem',
       zIndex: 1000
     }}>
-      <div className="card animate-fade-in" style={{
+      <div className="card animate-fade-in modal-dialog" style={{
         maxWidth: '680px',
         width: '100%',
         maxHeight: '92vh',
         overflowY: 'auto',
-        padding: '2rem',
+        padding: '1.75rem',
         background: 'var(--bg-secondary)',
         border: '1px solid var(--border-highlight)'
       }}>
@@ -131,7 +131,7 @@ export default function ReportSaeModal({
 
         <form onSubmit={handleSubmit}>
           {/* Study & Subject */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', marginBottom: '1rem' }}>
+          <div className="grid-col-2" style={{ marginBottom: '1rem' }}>
             <div>
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.3rem' }}>
                 Target Clinical Trial *
@@ -207,7 +207,7 @@ export default function ReportSaeModal({
           </div>
 
           {/* Adverse Event Term & MedDRA SOC */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', marginBottom: '1rem' }}>
+          <div className="grid-col-2" style={{ marginBottom: '1rem' }}>
             <div>
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.3rem' }}>
                 Adverse Event Clinical Term *
@@ -260,7 +260,7 @@ export default function ReportSaeModal({
           </div>
 
           {/* Causality & Batch */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1rem' }}>
+          <div className="grid-col-3" style={{ marginBottom: '1rem' }}>
             <div>
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.3rem' }}>
                 Severity

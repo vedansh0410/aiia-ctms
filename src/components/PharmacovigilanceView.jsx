@@ -86,7 +86,7 @@ export default function PharmacovigilanceView({
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <button 
             onClick={() => setShowCausalityTool(!showCausalityTool)}
             className="btn btn-secondary"
@@ -114,7 +114,7 @@ export default function PharmacovigilanceView({
           background: 'var(--bg-secondary)',
           border: '1px solid var(--border-highlight)'
         }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Activity size={18} color="var(--teal-400)" />
               <h3 style={{ fontSize: '0.95rem', margin: 0 }}>
@@ -130,7 +130,7 @@ export default function PharmacovigilanceView({
             </button>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginBottom: '1rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '0.85rem', marginBottom: '1rem' }}>
             <label style={{ fontSize: '0.78rem', display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
               <input type="checkbox" checked={calcTemporal} onChange={(e) => setCalcTemporal(e.target.checked)} />
               <span>Clear temporal sequence post-administration (+2)</span>
@@ -251,7 +251,7 @@ export default function PharmacovigilanceView({
                 fontSize: '0.75rem',
                 marginBottom: '1rem',
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))',
                 gap: '0.5rem'
               }}>
                 <div>

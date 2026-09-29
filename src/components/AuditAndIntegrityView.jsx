@@ -83,7 +83,7 @@ export default function AuditAndIntegrityView({ auditTrail, onAddAuditEntry, cur
         {/* ALCOA+ Badges */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 115px), 1fr))',
           gap: '0.5rem',
           fontSize: '0.72rem'
         }}>
@@ -113,7 +113,7 @@ export default function AuditAndIntegrityView({ auditTrail, onAddAuditEntry, cur
       {/* Search & Audit Table */}
       <div className="card" style={{ padding: '1.25rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.75rem' }}>
-          <div style={{ position: 'relative', width: '320px' }}>
+          <div style={{ position: 'relative', width: '320px', maxWidth: '100%' }}>
             <Search size={14} color="var(--text-muted)" style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)' }} />
             <input
               type="text"
@@ -139,7 +139,7 @@ export default function AuditAndIntegrityView({ auditTrail, onAddAuditEntry, cur
         </div>
 
         {/* Ledger Table */}
-        <div style={{ overflowX: 'auto' }}>
+        <div className="table-responsive">
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.75rem' }}>
             <thead>
               <tr style={{ borderBottom: '1px solid var(--border-medium)', textAlign: 'left', color: 'var(--text-secondary)' }}>
@@ -211,10 +211,10 @@ export default function AuditAndIntegrityView({ auditTrail, onAddAuditEntry, cur
           padding: '1.5rem',
           zIndex: 1000
         }}>
-          <div className="card animate-fade-in" style={{
+          <div className="card animate-fade-in modal-dialog" style={{
             maxWidth: '520px',
             width: '100%',
-            padding: '2rem',
+            padding: '1.75rem',
             background: 'var(--bg-secondary)',
             border: '1px solid var(--border-highlight)'
           }}>
