@@ -51,7 +51,7 @@ export default function KpiOverview({
         flexWrap: 'wrap',
         gap: '0.75rem'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', maxWidth: '100%' }}>
           <div style={{
             background: 'rgba(13, 148, 136, 0.25)',
             width: '36px',
@@ -60,12 +60,13 @@ export default function KpiOverview({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: 'var(--teal-300)'
+            color: 'var(--teal-300)',
+            flexShrink: 0
           }}>
             <Activity size={20} />
           </div>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <div style={{ maxWidth: '100%' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap', maxWidth: '100%' }}>
               <span style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                 Viewing as: {currentPersona.personaName}
               </span>
@@ -73,21 +74,23 @@ export default function KpiOverview({
                 {currentPersona.designation}
               </span>
             </div>
-            <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '0.1rem 0 0 0' }}>
+            <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '0.1rem 0 0 0', wordBreak: 'break-word' }}>
               {currentPersona.description}
             </p>
           </div>
         </div>
 
         {/* Quick regulatory statement badge */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', maxWidth: '100%' }}>
           <div style={{
             fontSize: '0.72rem',
             background: 'rgba(0, 0, 0, 0.25)',
             padding: '0.35rem 0.65rem',
             borderRadius: '6px',
             border: '1px solid var(--border-subtle)',
-            color: 'var(--text-secondary)'
+            color: 'var(--text-secondary)',
+            wordBreak: 'break-word',
+            maxWidth: '100%'
           }}>
             <strong>Compliance:</strong> CTRI (100% Prospective) • GCP-ASU • NDCT 2019 • DPDP Act 2023
           </div>

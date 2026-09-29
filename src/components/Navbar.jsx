@@ -47,10 +47,10 @@ export default function Navbar({
         flexWrap: 'wrap'
       }}>
         {/* Left: AIIA & NPvCC Emblem & Title */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', maxWidth: '100%' }}>
           <div style={{
-            width: '44px',
-            height: '44px',
+            width: '40px',
+            height: '40px',
             borderRadius: '10px',
             background: 'linear-gradient(135deg, #0d9488 0%, #042f2e 100%)',
             display: 'flex',
@@ -58,26 +58,27 @@ export default function Navbar({
             justifyContent: 'center',
             boxShadow: '0 0 15px rgba(13, 148, 136, 0.4)',
             border: '1px solid rgba(255, 255, 255, 0.15)',
-            position: 'relative'
+            position: 'relative',
+            flexShrink: 0
           }}>
-            <Activity size={24} color="#5eead4" />
+            <Activity size={22} color="#5eead4" />
             <div style={{
               position: 'absolute',
               bottom: '-3px',
               right: '-3px',
               background: '#d97706',
-              width: '14px',
-              height: '14px',
+              width: '12px',
+              height: '12px',
               borderRadius: '50%',
               border: '2px solid var(--bg-secondary)'
             }} title="NPvCC National Host" />
           </div>
 
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
               <span style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: '1.25rem',
+                fontSize: '1.2rem',
                 fontWeight: 800,
                 letterSpacing: '-0.02em',
                 background: 'linear-gradient(90deg, #5eead4, #14b8a6, #fde68a)',
@@ -86,14 +87,14 @@ export default function Navbar({
               }}>
                 AIIA CTMS
               </span>
-              <span className="badge badge-gold" style={{ fontSize: '0.65rem', padding: '0.1rem 0.4rem' }}>
+              <span className="badge badge-gold" style={{ fontSize: '0.62rem', padding: '0.1rem 0.35rem' }}>
                 NPvCC HOST
               </span>
-              <span className="badge badge-teal" style={{ fontSize: '0.65rem', padding: '0.1rem 0.4rem' }}>
+              <span className="badge badge-teal" style={{ fontSize: '0.62rem', padding: '0.1rem 0.35rem' }}>
                 GCP-ASU • NDCT 2019
               </span>
             </div>
-            <p style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 500, margin: 0 }}>
+            <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', fontWeight: 500, margin: 0 }}>
               All India Institute of Ayurveda • Ministry of Ayush, Govt. of India
             </p>
           </div>
@@ -107,13 +108,15 @@ export default function Navbar({
             gap: '0.6rem',
             background: 'rgba(225, 29, 72, 0.12)',
             border: '1px solid rgba(225, 29, 72, 0.45)',
-            padding: '0.35rem 0.85rem',
+            padding: '0.35rem 0.75rem',
             borderRadius: '0.5rem',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            maxWidth: '100%',
+            flexWrap: 'wrap'
           }} onClick={onOpenReportSae} title="Click to view urgent regulatory expedited reporting clock">
             <Flame size={16} color="#f43f5e" />
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+            <div style={{ maxWidth: '100%' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
                 <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#fb7185', textTransform: 'uppercase' }}>
                   NDCT 2019 Rule 42 Clock:
                 </span>
@@ -137,7 +140,7 @@ export default function Navbar({
         )}
 
         {/* Right: Actions, Role Selector & Theme Toggle */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap', maxWidth: '100%' }}>
           {/* Quick Action: Report AE/SAE Button */}
           <button 
             id="btn-report-sae-nav"
@@ -192,11 +195,12 @@ export default function Navbar({
 
             {/* Role Dropdown Menu */}
             {roleMenuOpen && (
-              <div style={{
+              <div className="role-dropdown-menu" style={{
                 position: 'absolute',
                 right: 0,
                 top: 'calc(100% + 8px)',
                 width: '320px',
+                maxWidth: '92vw',
                 background: 'var(--bg-secondary)',
                 border: '1px solid var(--border-medium)',
                 borderRadius: '0.75rem',

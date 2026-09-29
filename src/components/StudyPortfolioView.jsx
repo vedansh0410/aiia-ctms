@@ -112,7 +112,7 @@ export default function StudyPortfolioView({ studies, onSelectStudy, onOpenRepor
             >
               {/* Header: IDs & Badges */}
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.6rem' }}>
+                <div className="box-flex-header" style={{ marginBottom: '0.6rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
                     <span className="clinical-code">{study.protocolNumber}</span>
                     <a 
@@ -246,12 +246,12 @@ export default function StudyPortfolioView({ studies, onSelectStudy, onOpenRepor
               </div>
 
               {/* Card Footer Actions */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem' }}>
+              <div className="box-flex-footer">
                 <div style={{ fontSize: '0.73rem', color: 'var(--text-muted)' }}>
                   Lead PI: <strong>{study.leadPi}</strong>
                 </div>
 
-                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                   {hasSae && (
                     <button
                       onClick={onOpenReportSae}

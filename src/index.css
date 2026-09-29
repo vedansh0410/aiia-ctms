@@ -1,6 +1,6 @@
 /* ==========================================================================
    AIIA CTMS - Clinical Trials Management System & NPvCC Platform
-   Core Design System & Responsive Layout System
+   Core Design System & Bulletproof Relative Responsive Architecture
    ========================================================================== */
 
 :root {
@@ -35,7 +35,7 @@
   --success-green: #10b981;
   --success-green-light: #d1fae5;
 
-  /* Neutral Spectrum (Dark by default for ultra-premium clinical command center) */
+  /* Neutral Spectrum (Dark by default) */
   --bg-primary: #0a0f14;
   --bg-secondary: #0f1720;
   --bg-card: rgba(18, 26, 36, 0.85);
@@ -98,11 +98,10 @@
   --shadow-glow-red: 0 0 20px rgba(225, 29, 72, 0.15);
 }
 
-/* Reset & Base */
+/* Universal Relative Box Reset */
 *, *::before, *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  min-width: 0; /* Vital: prevents flex/grid items from blowing out containers */
 }
 
 html, body {
@@ -114,7 +113,9 @@ html, body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Strictly prevents horizontal page blowout */
+  margin: 0;
+  padding: 0;
 }
 
 /* Scrollbar customization */
@@ -152,34 +153,64 @@ html, body {
   animation: pulseGlow 1.8s infinite;
 }
 
-/* Common Layout Components */
+/* Base App Layout */
 .app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* Main Content Area */
+/* Main Viewport Container */
 .main-viewport {
   flex: 1;
-  padding: 1.25rem 1.75rem 3rem 1.75rem;
+  padding: 1.25rem 1.5rem 3rem 1.5rem;
   max-width: 1680px;
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* Headings */
+/* Headings with auto word wrapping */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
-/* Badges */
+/* ==========================================================================
+   CARD & BOX CONTAINMENT PRIMITIVES
+   Everything is strictly relative and contained within boundaries
+   ========================================================================== */
+.card {
+  position: relative;
+  background: var(--bg-card);
+  border: var(--glass-border);
+  border-radius: 0.75rem;
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden; /* Keeps all borders, glows, and elements sealed inside */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+.card:hover {
+  border-color: var(--border-highlight);
+  box-shadow: var(--shadow-md);
+}
+
+/* Badges with flexible wrapping so they never stretch boxes */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -190,7 +221,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  white-space: nowrap;
+  max-width: 100%;
+  word-break: break-word;
+  white-space: normal;
+  line-height: 1.25;
+  box-sizing: border-box;
 }
 
 .badge-teal {
@@ -229,13 +264,13 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid rgba(217, 119, 6, 0.3);
 }
 
-/* Button System */
+/* Button System with responsive shrinking */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
-  padding: 0.45rem 0.9rem;
+  padding: 0.45rem 0.85rem;
   font-size: 0.82rem;
   font-weight: 600;
   border-radius: 0.5rem;
@@ -244,8 +279,8 @@ h1, h2, h3, h4, h5, h6 {
   transition: all var(--transition-fast);
   font-family: var(--font-sans);
   text-decoration: none;
-  white-space: nowrap;
   box-sizing: border-box;
+  max-width: 100%;
 }
 
 .btn-primary {
@@ -287,22 +322,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
 }
 
-/* Card Primitive */
-.card {
-  background: var(--bg-card);
-  border: var(--glass-border);
-  border-radius: 0.75rem;
-  backdrop-filter: var(--glass-blur);
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-normal);
-  box-sizing: border-box;
-  max-width: 100%;
-}
-.card:hover {
-  border-color: var(--border-highlight);
-  box-shadow: var(--shadow-md);
-}
-
 /* Monospace code / clinical identifier */
 .clinical-code {
   font-family: var(--font-mono);
@@ -314,53 +333,59 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid var(--border-subtle);
   color: var(--teal-300);
   display: inline-block;
-  white-space: nowrap;
+  max-width: 100%;
+  word-break: break-all;
 }
 
-/* Table Responsive Wrapper */
+/* Responsive Table Wrapper */
 .table-responsive {
   width: 100%;
+  max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  margin: 0.5rem 0;
 }
 
 /* ==========================================================================
-   RESPONSIVE GRID UTILITIES
-   Ensures clean alignment across desktop, tablet, and mobile screens
+   RESPONSIVE GRIDS & FLEX CONTAINERS
    ========================================================================== */
 
-/* Responsive Studies Catalog Grid:
-   On large screens: 2-3 columns.
-   On mobile/tablet: auto-collapses cleanly to 1 column without overflow. */
+/* Study Cards Grid:
+   Desktop: Multiple adaptive columns
+   Mobile/Resize: 100% relative fluid width with ZERO overflow */
 .study-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 460px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
   gap: 1.25rem;
   width: 100%;
+  max-width: 100%;
 }
 
-/* KPI Top Grid */
+/* Top 4 KPI Grid */
 .kpi-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
   gap: 1rem;
   width: 100%;
+  max-width: 100%;
 }
 
-/* Two-column responsive grid (collapses on mobile) */
+/* 2-Column Responsive Grid */
 .grid-col-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   width: 100%;
+  max-width: 100%;
 }
 
-/* Three-column responsive grid (collapses on tablet/mobile) */
+/* 3-Column Responsive Grid */
 .grid-col-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   width: 100%;
+  max-width: 100%;
 }
 
 /* Study mini compliance grid */
@@ -369,6 +394,7 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
   width: 100%;
+  max-width: 100%;
 }
 
 /* Tab bar container */
@@ -383,24 +409,39 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-overflow-scrolling: touch;
   white-space: nowrap;
   width: 100%;
+  max-width: 100%;
+}
+
+/* General Flex Utility for Cards Header & Footer */
+.box-flex-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+.box-flex-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* ==========================================================================
-   MEDIA QUERIES - TABLET & MOBILE BREAKPOINTS
+   BREAKPOINTS: TABLET & MOBILE (< 768px)
    ========================================================================== */
-
-/* Tablet & Mobile Screens (<= 768px) */
 @media (max-width: 768px) {
   .main-viewport {
-    padding: 0.85rem 0.85rem 2.5rem 0.85rem;
+    padding: 0.75rem 0.75rem 2.5rem 0.75rem;
   }
 
-  .grid-col-2 {
-    grid-template-columns: 1fr;
-    gap: 0.85rem;
-  }
-
-  .grid-col-3 {
+  .grid-col-2, .grid-col-3 {
     grid-template-columns: 1fr;
     gap: 0.85rem;
   }
@@ -415,39 +456,55 @@ h1, h2, h3, h4, h5, h6 {
     gap: 0.4rem;
   }
 
-  /* Make modal windows fit nicely on mobile */
+  .kpi-cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  }
+
+  /* Modal boxes strictly scale within mobile viewport */
   .modal-dialog {
     max-width: 95vw !important;
     max-height: 94vh !important;
     padding: 1.15rem !important;
     margin: 0.5rem !important;
+    overflow-y: auto !important;
   }
 
-  /* Ensure navbar stacks cleanly without collision */
   .navbar-container {
-    padding: 0.6rem 0.85rem !important;
+    padding: 0.6rem 0.75rem !important;
   }
 
   .role-dropdown-menu {
     width: min(92vw, 320px) !important;
-    right: -10px !important;
+    right: 0 !important;
   }
 
   .btn {
-    padding: 0.4rem 0.75rem;
+    padding: 0.4rem 0.7rem;
     font-size: 0.78rem;
+  }
+
+  .box-flex-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .box-flex-footer > div:last-child {
+    width: 100%;
+    display: flex;
+    justifyContent: flex-end;
+    gap: 0.5rem;
+    flex-wrap: wrap;
   }
 }
 
-/* Small Mobile Screens (<= 480px) */
+/* Small Screens (< 480px) */
 @media (max-width: 480px) {
   .main-viewport {
-    padding: 0.65rem 0.65rem 2rem 0.65rem;
+    padding: 0.5rem 0.5rem 2rem 0.5rem;
   }
 
   .card {
-    padding: 1rem !important;
-    border-radius: 0.6rem;
+    padding: 0.9rem !important;
   }
 
   h1, h2 {
@@ -455,23 +512,18 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   h3 {
-    font-size: 0.98rem !important;
-  }
-
-  .study-compliance-grid {
-    grid-template-columns: 1fr;
+    font-size: 0.95rem !important;
   }
 
   .kpi-cards-grid {
     grid-template-columns: 1fr;
   }
 
-  .btn {
-    font-size: 0.75rem;
-  }
-
   .badge {
     font-size: 0.68rem;
-    padding: 0.15rem 0.45rem;
+  }
+
+  .btn {
+    font-size: 0.75rem;
   }
 }
