@@ -213,18 +213,26 @@ export default function App() {
                 key={tab.id}
                 id={`tab-${tab.id}`}
                 onClick={() => setActiveTab(tab.id)}
-                className={`btn ${isActive ? 'btn-primary' : 'btn-ghost'}`}
+                className={`btn tab-btn ${isActive ? 'btn-primary' : 'btn-ghost'}`}
                 style={{
                   fontSize: '0.82rem',
-                  padding: '0.55rem 1rem',
+                  padding: '0.5rem 0.95rem',
                   borderRadius: '0.5rem',
-                  border: isActive ? 'none' : '1px solid transparent'
+                  border: isActive ? 'none' : '1px solid transparent',
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem'
                 }}
               >
-                <Icon size={16} />
-                <span>{tab.label}</span>
+                <Icon size={16} style={{ flexShrink: 0 }} />
+                <span style={{ whiteSpace: 'nowrap', flexShrink: 0 }}>{tab.label}</span>
                 {tab.badge && (
-                  <span className={tab.badgeAlert ? 'badge badge-red pulse-red-badge' : 'badge badge-teal'} style={{ fontSize: '0.65rem' }}>
+                  <span 
+                    className={tab.badgeAlert ? 'badge badge-red pulse-red-badge' : 'badge badge-teal'} 
+                    style={{ fontSize: '0.65rem', whiteSpace: 'nowrap', flexShrink: 0, display: 'inline-flex' }}
+                  >
                     {tab.badge}
                   </span>
                 )}
